@@ -1,191 +1,183 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-}
-
-/* Estilos para el encabezado (título) */
 header {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     position: fixed; 
     width: 100%;
     top: 0; 
     left: 0;
     z-index: 2; 
 }
+.contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas con igual ancho */
+    grid-template-rows: auto auto; /* Altura automática para filas */
+    grid-gap: 20px; /* Espacio entre las columnas y filas */
+    max-width: 1000px;
+    margin: 100px auto 20px; /* Margen superior para evitar solapamiento con el encabezado */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    grid-template-areas:
+        "header header"
+        "receta video"
+        "formulario formulario"
+        "footer footer";
+}
+
+/* Establecer áreas para los elementos dentro de la sección de contenido */
+.header {
+    grid-area: header;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    z-index: 2;
+    transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+.header:hover {
+    background-color: #555; /* Cambio de color de fondo al pasar el cursor */
+}
 
 h1 {
     font-size: 36px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin-top: 20px; /* Agregar margen superior para igualar el formato del footer */
 }
 
-/* Estilos para la sección de contenido */
-.contenido {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    max-width: 1000px;
-    margin: 100px auto 20px; /* Agregar margen superior para evitar que el título se solape con el contenido */
+/* Estilos para la receta */
+.receta {
+    grid-area: receta;
+    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-
-    .video-contenedor {
-        flex: 1;
-        margin-left: 20px;
-        position: relative; 
-        
-        overflow: auto; 
-        
-        max-width: 560px; 
-        
-        height: 400px; 
-    }
-    .video-contenedor iframe {
-        position: absolute; 
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100%; 
-    }
 }
 
-
-.video {
-    flex: 1;
-    margin-left: 20px;
-}
-
-
-.video iframe {
-    width: 100%; 
-    max-width: 400px;
-    height: auto;
-}
-
-
-/* Estilos para los títulos */
-h2 {
+.receta h2 {
     font-size: 24px;
     color: #333;
+    margin-bottom: 10px;
 }
 
-/* Estilos para listas */
-ul, ol {
+.receta ul, .receta ol {
     list-style-type: disc;
     margin-left: 20px;
     padding-left: 20px;
 }
 
-/* Estilos para la tabla nutricional */
-table {
+/* Estilos para el video */
+.video-contenedor {
+    grid-area: video;
+    position: relative;
+    overflow: hidden;
+    max-width: 560px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.video-contenedor iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    transition: transform 0.3s ease; /* Animación de escala */
+}
+
+.video-contenedor:hover iframe {
+    transform: scale(1.1); /* Escala el video al pasar el cursor */
+}
+
+/* Estilos para el formulario de contacto */
+/* Estilos para la sección de formulario */
+.formulario {
+    grid-area: formulario;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInRight 1s ease; /* Animación de entrada desde la derecha */
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Estilos para la tabla de contacto */
+.tabla-contacto {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+.tabla-contacto td {
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-/* Estilos para el formulario de contacto */
-.formulario {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    .tabla-contacto {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    
-    .tabla-contacto td {
-        padding: 10px;
-        border: 1px solid #ccc;
-    }
-    
-    .tabla-contacto label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-    }
-    
-    .tabla-contacto input[type="text"],
-    .tabla-contacto input[type="email"],
-    .tabla-contacto textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    
-    .tabla-contacto textarea {
-        resize: vertical; /* Permite redimensionar verticalmente el área de texto */
-    }
-    
-    .tabla-contacto button {
-        background-color: #333;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    
-    .tabla-contacto button:hover {
-        background-color: #555;
-    }
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-label {
+.tabla-contacto label {
+    font-weight: bold;
+    display: block;
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
+.tabla-contacto input[type="text"],
+.tabla-contacto input[type="email"],
+.tabla-contacto textarea {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    transition: border-color 0.3s ease; /* Transición de color del borde */
 }
 
-button {
-    background-color: #333;
+.tabla-contacto input[type="text"]:focus,
+.tabla-contacto input[type="email"]:focus,
+.tabla-contacto textarea:focus {
+    border-color: #555; /* Cambio de color del borde al enfocar */
+}
+
+.tabla-contacto textarea {
+    resize: vertical;
+}
+
+/* Estilos para el botón de enviar */
+.tabla-contacto button {
+    background-color: #ff5722; /* Color de fondo atractivo */
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 25%;
+    padding: 15px 30px; /* Aumentar el padding para un botón más grande */
+    border-radius: 25px; /* Mayor redondez en los bordes */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones de color de fondo y escala */
+    display: block; /* Hacer que el botón sea de bloque para centrarlo */
+    margin: 15px auto; /* Centrar el botón horizontalmente y agregar espacio */
+    font-size: 18px; /* Tamaño de fuente */
 }
+
+.tabla-contacto button:hover {
+    background-color: #ff7043; /* Cambio de color de fondo al pasar el cursor */
+    transform: scale(1.05); /* Escala ligeramente el botón al pasar el cursor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra al pasar el cursor */
+
+}
+/* Estilos para el footer */
 footer {
+    grid-area: footer;
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 20px 0; /* Espaciado superior e inferior del footer */
-    position: fixed; /* Cambiado a posición fija para que se mantenga en la parte inferior de la ventana del navegador */
+    padding: 2px 0;
     bottom: 0;
     left: 0;
     width: 100%;
